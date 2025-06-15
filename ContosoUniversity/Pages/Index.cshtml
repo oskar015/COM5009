@@ -1,0 +1,72 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+    .topnav .search-container {
+        float: right;
+        max-width: 1000px;
+    }
+
+    .topnav input[type=text] {
+        padding: 6px;
+        margin-top: 8px;
+        font-size: 17px;
+        border: none;
+    }
+
+    .topnav .search-container button {
+        float: right;
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .topnav .search-container button:hover {
+            background: #ccc;
+        }
+
+    
+
+ 
+    .topnav a, .topnav input[type=text], .topnav .search-container button {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+
+    .topnav input[type=text] {
+        border: 1px solid #ccc;
+    }
+
+    }
+</style>
+
+<div class="row mb-auto">
+    <div class="col-md-4">
+        <div class="row no-gutters border mb-4">
+            <div class="col p-4 mb-4 ">
+                <p class="card-text">
+                    <h2>Online Library Search</h2>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="search-container">
+    <form action="/action_page.php">
+        <input type="text" placeholder="Search..." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+</div>
