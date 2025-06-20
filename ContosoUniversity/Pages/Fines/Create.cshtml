@@ -1,0 +1,44 @@
+﻿@page
+@model ContosoUniversity.Pages.Fines.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Fine</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Fine.FineID" class="control-label"></label>
+                <input asp-for="Fine.FineID" class="form-control" />
+                <span asp-validation-for="Fine.FineID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fine.Fine_amount" class="control-label"></label>
+                <input asp-for="Fine.Fine_amount" class="form-control" />
+                <span asp-validation-for="Fine.Fine_amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fine.User_owed" class="control-label"></label>
+                <input asp-for="Fine.User_owed" class="form-control" />
+                <span asp-validation-for="Fine.User_owed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

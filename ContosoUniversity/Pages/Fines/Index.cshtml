@@ -1,0 +1,42 @@
+﻿@page
+@model ContosoUniversity.Pages.Fines.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fine[0].Fine_amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fine[0].User_owed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Fine) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fine_amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_owed)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.FineID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.FineID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.FineID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
