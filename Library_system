@@ -29,7 +29,10 @@ Admin.cshtml.cs
 ManageBooks.cshtml
  ManageBooks.cshtml.cs
 
-Below is the code for all the razor pages.
+
+
+
+Below is the code for all the razor pages:
 
 razor pages
 Pages/Shared/_Layout.cshtml
@@ -99,9 +102,9 @@ namespace YourProjectNamespace.Pages.Shared
     }
 }
 
-==========================
+
 Pages/Login.cshtml
-==========================
+
 @page
 @model YourProjectNamespace.Pages.LoginModel
 <h2>Login</h2>
@@ -230,6 +233,162 @@ namespace YourProjectNamespace.Pages
             Results = books.Where(b => b.ToLower().Contains(query?.ToLower() ?? "")).ToList();
         }
 
+Pages/Borrow.cshtml 
+@page
+@model LibrarySystem.Pages.BorrowModel
+@{
+    ViewData["Title"] = "Borrow";
+}
+<h2>Borrow Book</h2>
+<form method="post">
+    <label>Book ID:</label>
+    <input type="text" name="BookId" />
+    <button type="submit">Borrow</button>
+</form>
+<p>@Model.Message</p>
 
+Pages/Borrow.cshtml.cs 
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace LibrarySystem.Pages
+{
+    public class BorrowModel : PageModel
+    {
+        [BindProperty]
+        public string BookId { get; set; }
+
+        public string Message { get; set; }
+
+        public void OnPost()
+        {
+            Message = $"Book {BookId} borrowed.";
+        }
+    }
+}
+
+Pages/Return.cshtml 
+@page
+@model LibrarySystem.Pages.ReturnModel
+@{
+    ViewData["Title"] = "Return";
+}
+<h2>Return Book</h2>
+<form method="post">
+    <label>Book ID:</label>
+    <input type="text" name="BookId" />
+    <button type="submit">Return</button>
+</form>
+<p>@Model.Message</p>
+
+Pages/Return.cshtml.cs 
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace LibrarySystem.Pages
+{
+    public class ReturnModel : PageModel
+    {
+        [BindProperty]
+        public string BookId { get; set; }
+
+        public string Message { get; set; }
+
+        public void OnPost()
+        {
+            Message = $"Book {BookId} returned.";
+        }
+    }
+}
+
+Pages/Fines.cshtml 
+@page
+@model LibrarySystem.Pages.FinesModel
+@{
+    ViewData["Title"] = "Fines";
+}
+<h2>Your Fines</h2>
+<p>You have £@Model.FineAmount in fines.</p>
+
+Pages/Fines.cshtml.cs 
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace LibrarySystem.Pages
+{
+    public class FinesModel : PageModel
+    {
+        public decimal FineAmount { get; set; }
+
+        public void OnGet()
+        {
+            FineAmount = 2.5m;
+        }
+    }
+}
+
+Pages/Admin.cshtml 
+@page
+@model LibrarySystem.Pages.AdminModel
+@{
+    ViewData["Title"] = "Admin";
+}
+<h2>Admin Dashboard</h2>
+<ul>
+    <li><a asp-page="/ManageBooks">Manage Books</a></li>
+</ul>
+
+Pages/Admin.cshtml.cs 
+using Microsoft.AspNetCore.Mvc.RazorPages
+
+namespace LibrarySystem.Pages
+{
+    public class AdminModel : PageModel
+    {
+        public void OnGet() {}
+    }
+}
+
+Pages/ManageBooks.cshtml 
+@page
+@model LibrarySystem.Pages.ManageBooksModel
+@{
+    ViewData["Title"] = "Manage Books";
+}
+<h2>Manage Books</h2>
+<table>
+    <thead><tr><th>Title</th><th>Author</th></tr></thead>
+    <tbody>
+        @foreach (var book in Model.Books)
+        {
+            <tr><td>@book.Title</td><td>@book.Author</td></tr>
+        }
+    </tbody>
+</table>
+
+Pages/ManageBooks.cshtml.cs 
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace LibrarySystem.Pages
+{
+    public class ManageBooksModel : PageModel
+    {
+        public class Book
+        {
+            public string Title { get; set; }
+            public string Author { get; set; }
+        }
+
+        public List<Book> Books { get; set; }
+
+        public void OnGet()
+        {
+            Books = new List<Book>
+            {
+                new Book { Title = "Computer Science", Author = "Amina" },
+                new Book { Title = "Software Engineering", Author = "Lhakpa" }
+            }
+        }
+    
+}
 
 
